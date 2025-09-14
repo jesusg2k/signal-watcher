@@ -47,34 +47,34 @@ class APIClient {
     return this.request('/watch-lists');
   }
 
-  async getWatchList(id: string) {
+  async getWatchList(id: string): Promise<APIResponse<any>> {
     return this.request(`/watch-lists/${id}`);
   }
 
-  async createWatchList(data: { name: string; description?: string; terms: string[] }) {
+  async createWatchList(data: { name: string; description?: string; terms: string[] }): Promise<APIResponse<any>> {
     return this.request('/watch-lists', {
       method: 'POST',
       body: JSON.stringify(data),
     });
   }
 
-  async deleteWatchList(id: string) {
+  async deleteWatchList(id: string): Promise<APIResponse<any>> {
     return this.request(`/watch-lists/${id}`, {
       method: 'DELETE',
     });
   }
 
   // Events
-  async getEvents(watchListId?: string) {
+  async getEvents(watchListId?: string): Promise<APIResponse<any[]>> {
     const query = watchListId ? `?watchListId=${watchListId}` : '';
     return this.request(`/events${query}`);
   }
 
-  async getEvent(id: string) {
+  async getEvent(id: string): Promise<APIResponse<any>> {
     return this.request(`/events/${id}`);
   }
 
-  async createEvent(data: { watchListId: string; eventData: any }) {
+  async createEvent(data: { watchListId: string; eventData: any }): Promise<APIResponse<any>> {
     return this.request('/events', {
       method: 'POST',
       body: JSON.stringify(data),
