@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
-import { AIAnalysis, EventData } from '@/types';
-import logger from '@/utils/logger';
-import { getCache, setCache } from '@/utils/redis';
+import { AIAnalysis, EventData } from '../types';
+import logger from '../utils/logger';
+import { getCache, setCache } from '../utils/redis';
 
 class AIService {
   private openai: OpenAI | null = null;

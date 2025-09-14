@@ -6,14 +6,14 @@ import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 
-import { correlationMiddleware } from '@/middleware/correlation';
-import { errorHandler } from '@/middleware/errorHandler';
-import { connectRedis } from '@/utils/redis';
-import logger from '@/utils/logger';
+import { correlationMiddleware } from './middleware/correlation';
+import { errorHandler } from './middleware/errorHandler';
+import { connectRedis } from './utils/redis';
+import logger from './utils/logger';
 
 // Controllers
-import * as watchListController from '@/controllers/watchListController';
-import * as eventController from '@/controllers/eventController';
+import * as watchListController from './controllers/watchListController';
+import * as eventController from './controllers/eventController';
 
 dotenv.config();
 

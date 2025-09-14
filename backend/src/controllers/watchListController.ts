@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
 import { PrismaClient } from '@prisma/client';
-import { APIResponse, CreateWatchListRequest } from '@/types';
-import logger from '@/utils/logger';
+import { APIResponse, CreateWatchListRequest } from '../types';
+import logger from '../utils/logger';
 
 const prisma = new PrismaClient();
 

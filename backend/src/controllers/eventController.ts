@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { z } from 'zod';
 import { PrismaClient } from '@prisma/client';
-import { APIResponse, CreateEventRequest } from '@/types';
-import aiService from '@/services/aiService';
-import logger from '@/utils/logger';
+import { APIResponse, CreateEventRequest } from '../types';
+import aiService from '../services/aiService';
+import logger from '../utils/logger';
 
 const prisma = new PrismaClient();
 
