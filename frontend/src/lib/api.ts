@@ -43,7 +43,7 @@ class APIClient {
   }
 
   // Watch Lists
-  async getWatchLists() {
+  async getWatchLists(): Promise<APIResponse<any[]>> {
     return this.request('/watch-lists');
   }
 
