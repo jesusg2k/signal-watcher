@@ -129,7 +129,7 @@ jobs:
       working-directory: ./frontend
       run: npm run build
       env:
-        BACKEND_URL: https://signal-watcher-backend.onrender.com
+        BACKEND_URL: https://signal-watcher-1.onrender.com
     
     - name: Deploy to Netlify
       uses: nwtgck/actions-netlify@v3.0
