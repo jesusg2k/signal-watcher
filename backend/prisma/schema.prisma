@@ -1,0 +1,43 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model WatchList {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  terms       String[] // Array of terms to watch
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  events      Event[]
+
+  @@map("watch_lists")
+}
+
+model Event {
+  id           String      @id @default(cuid())
+  watchListId  String
+  watchList    WatchList   @relation(fields: [watchListId], references: [id], onDelete: Cascade)
+  rawData      Json        // Original event data
+  summary      String?     // AI-generated summary
+  severity     Severity?   // AI-classified severity
+  suggestedAction String?  // AI-suggested next action
+  processed    Boolean     @default(false)
+  correlationId String    @unique // For tracing
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+
+  @@map("events")
+}
+
+enum Severity {
+  LOW
+  MED
+  HIGH
+  CRITICAL
+}
