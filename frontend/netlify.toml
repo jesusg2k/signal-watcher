@@ -5,7 +5,7 @@
 
 [build.environment]
   NODE_VERSION = "18"
-  BACKEND_URL = "https://signal-watcher-backend.onrender.com"
+  BACKEND_URL = "https://TU_BACKEND_URL_REAL.onrender.com"
 
 [[redirects]]
   from = "/*"
