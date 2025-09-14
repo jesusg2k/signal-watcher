@@ -2,6 +2,8 @@
 
 AI-powered signal monitoring system for security threat detection and analysis.
 
+![Signal Watcher Demo](./captura-flow.png)
+
 ## 🚀 Features
 
 - **Watch Lists Management**: Create and manage lists of security terms to monitor
