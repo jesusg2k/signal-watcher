@@ -27,10 +27,13 @@ export const errorHandler = (
     message = 'Validation error';
   } else if (error.name === 'PrismaClientKnownRequestError') {
     statusCode = 400;
-    message = 'Database error';
+    message = `Database error: ${error.message}`;
   } else if (error.message.includes('not found')) {
     statusCode = 404;
     message = 'Resource not found';
+  } else if (error.name.includes('Prisma')) {
+    statusCode = 500;
+    message = `Prisma error: ${error.message}`;
   }
 
   const response: APIResponse = {
