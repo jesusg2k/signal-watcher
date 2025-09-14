@@ -1,0 +1,13 @@
+[build]
+  base = "frontend/"
+  publish = "frontend/out"
+  command = "npm ci && npm run build && npm run export"
+
+[build.environment]
+  NODE_VERSION = "18"
+  BACKEND_URL = "https://signal-watcher-backend.onrender.com"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
