@@ -14,6 +14,10 @@ client.on('connect', () => {
 });
 
 export const connectRedis = async () => {
+  if (!process.env.REDIS_URL) {
+    logger.info('Redis disabled - no REDIS_URL provided');
+    return;
+  }
   try {
     await client.connect();
   } catch (error) {
@@ -22,6 +26,7 @@ export const connectRedis = async () => {
 };
 
 export const setCache = async (key: string, value: any, ttl: number = 300) => {
+  if (!process.env.REDIS_URL) return;
   try {
     await client.setEx(key, ttl, JSON.stringify(value));
   } catch (error) {
@@ -30,6 +35,7 @@ export const setCache = async (key: string, value: any, ttl: number = 300) => {
 };
 
 export const getCache = async (key: string) => {
+  if (!process.env.REDIS_URL) return null;
   try {
     const value = await client.get(key);
     return value ? JSON.parse(value) : null;

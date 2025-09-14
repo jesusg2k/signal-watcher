@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: signal-watcher-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install --include=dev && npx prisma generate && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: DATABASE_URL
+        fromDatabase:
+          name: signal-watcher-db
+          property: connectionString
+      - key: FRONTEND_URL
+        value: https://signal-watcher-frontend.netlify.app
+
+databases:
+  - name: signal-watcher-db
+    databaseName: signal_watcher
+    user: postgres

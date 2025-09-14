@@ -44,17 +44,35 @@ class AIService {
   }
 
   private mockAnalysis(eventData: EventData, watchTerms: string[]): AIAnalysis {
-    const severities: AIAnalysis['severity'][] = ['LOW', 'MED', 'HIGH', 'CRITICAL'];
-    const randomSeverity = severities[Math.floor(Math.random() * severities.length)];
-    
     const matchedTerms = watchTerms.filter(term => 
       JSON.stringify(eventData).toLowerCase().includes(term.toLowerCase())
     );
 
+    // Detect critical events by keywords
+    const criticalKeywords = ['ransomware', 'breach', 'compromise', 'attack', 'critical', 'wannacry', 'encrypted'];
+    const highKeywords = ['malware', 'trojan', 'virus', 'exploit', 'high'];
+    const medKeywords = ['phishing', 'suspicious', 'medium', 'med'];
+    
+    const eventText = JSON.stringify(eventData).toLowerCase();
+    
+    let severity: AIAnalysis['severity'] = 'LOW';
+    
+    if (criticalKeywords.some(keyword => eventText.includes(keyword))) {
+      severity = 'CRITICAL';
+    } else if (highKeywords.some(keyword => eventText.includes(keyword))) {
+      severity = 'HIGH';
+    } else if (medKeywords.some(keyword => eventText.includes(keyword))) {
+      severity = 'MED';
+    } else if (matchedTerms.length > 2) {
+      severity = 'HIGH';
+    } else if (matchedTerms.length > 0) {
+      severity = 'MED';
+    }
+
     return {
       summary: `Mock analysis: Detected event of type "${eventData.type}" ${matchedTerms.length > 0 ? `matching terms: ${matchedTerms.join(', ')}` : 'with no term matches'}. ${eventData.description}`,
-      severity: matchedTerms.length > 0 ? (matchedTerms.length > 2 ? 'HIGH' : 'MED') : randomSeverity,
-      suggestedAction: this.getSuggestedAction(randomSeverity, eventData.type)
+      severity,
+      suggestedAction: this.getSuggestedAction(severity, eventData.type)
     };
   }
 
