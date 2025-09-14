@@ -281,4 +281,13 @@ MIT License - see LICENSE file for details
 For issues and questions:
 1. Check the [troubleshooting guide](docs/TROUBLESHOOTING.md)
 2. Review the [runbook](docs/RUNBOOK.md)
-3. Open an issue on GitHub
+3. Check [deployment notes](docs/DEPLOYMENT_NOTES.md)
+4. Open an issue on GitHub
+
+## 🌐 Live Demo
+
+- **Frontend**: https://signal-watcher-frontend.netlify.app
+- **Backend API**: https://signal-watcher-1.onrender.com
+- **Health Check**: https://signal-watcher-1.onrender.com/health
+
+*Demo includes sample data with 3 watch lists and 9 security events*

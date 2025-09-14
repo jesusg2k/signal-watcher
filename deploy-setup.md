@@ -77,8 +77,8 @@ Cada push a `main` activará:
 
 ## URLs Finales:
 - **Frontend**: https://signal-watcher-frontend.netlify.app
-- **Backend**: https://signal-watcher-backend.onrender.com
-- **API Health**: https://signal-watcher-backend.onrender.com/health
+- **Backend**: https://signal-watcher-1.onrender.com
+- **API Health**: https://signal-watcher-1.onrender.com/health
 
 ## Comandos Útiles:
 
