@@ -3,7 +3,7 @@ services:
     name: signal-watcher-backend
     env: node
 
-    buildCommand: cd backend && npm install --include=dev && npx prisma generate && npm run build
+    buildCommand: cd backend && npm install --include=dev && npx prisma generate && npx prisma db push && npm run build
     startCommand: npm start
     healthCheckPath: /health
     envVars:
